@@ -1,5 +1,5 @@
 plugins {
-    id("dotfiles") apply false
+    id("dotfiles")
 }
 
 allprojects {

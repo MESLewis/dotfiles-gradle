@@ -1,3 +1,4 @@
-dotfiles {
-    message = "one"
+
+tasks.register<DotfileTask>("autoload") {
+    source = "autoload"
 }

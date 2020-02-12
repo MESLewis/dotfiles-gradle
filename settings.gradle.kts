@@ -1,7 +1,3 @@
-import org.gradle.internal.impldep.org.bouncycastle.asn1.x500.style.RFC4519Style.name
-import java.io.FileFilter
-import java.io.FilenameFilter
-
 /*
  * The settings file is used to specify which projects to include in your build.
  */
