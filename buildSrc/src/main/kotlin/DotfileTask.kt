@@ -35,6 +35,7 @@ open class DotfileTask : DefaultTask() {
             println("File $sourceFile does not exist")
             return
         }
+        //TODO make reverse link pointing to dest
         if(!destFile.exists()) {
             println("Creating link at $destFile pointing to $sourceFile")
             Files.createSymbolicLink(destFile.toPath(), sourceFile.toPath())
