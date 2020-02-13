@@ -1,4 +1,5 @@
 
 tasks.register<DotfileTask>("autoload") {
-    source = "autoload"
+    source = "."
+    destination = "~/AppData/Local/nvim"
 }

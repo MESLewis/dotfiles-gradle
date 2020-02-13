@@ -3,6 +3,8 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 import org.gradle.internal.os.OperatingSystem
+import java.nio.file.Files
+import java.nio.file.Paths
 
 //TODO have this be subclassed for things like executing cmd lines
 open class DotfileTask : DefaultTask() {
@@ -18,12 +20,27 @@ open class DotfileTask : DefaultTask() {
 
     init {
         group = "dotfiles"
+
     }
 
     @TaskAction
     fun createLink() {
         //projectDir = directory containing build script
         //path = absolute path of the project
-        println("Running on $os moving file from $source to $destination")
+
+        val sourceFile = project.file(source)
+        val destFile = Paths.get(destination.replace("~", System.getProperty("user.home"))).toFile()
+
+        if(!sourceFile.exists()) {
+            println("File $sourceFile does not exist")
+            return
+        }
+        if(!destFile.exists()) {
+            println("Creating link at $destFile pointing to $sourceFile")
+            Files.createSymbolicLink(destFile.toPath(), sourceFile.toPath())
+//            Files.createLink(destFile.toPath(), sourceFile.toPath())
+        } else {
+            println("Link at $destFile already exists")
+        }
     }
 }
